@@ -12,6 +12,8 @@ import concurrent.ExecutionContext.Implicits.global
 object Main extends App {
   implicit val system = ActorSystem()
   val factory = new ConnectionFactory()
+  val host = sys.env.getOrElse("RABBITMQ_PORT_5672_TCP_ADDR","127.0.0.1")
+  factory.setHost(host)
   val connection = system.actorOf(ConnectionActor.props(factory), "rabbitmq")
   val exchange = "amq.fanout"
 
