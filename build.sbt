@@ -13,3 +13,8 @@ lazy val root2 = enablePlugins(DockerPlugin)
 
 packageName in Docker := "helloworld-ecr"
 version     in Docker := version.value
+
+javaOptions in Universal ++= Seq(
+
+  "-Drabbitmq.port.5672.tcp.addr=172.17.0.2"
+)
